@@ -7,21 +7,20 @@ if !has('python')
 endif
 
 function! PythonWordFuzzyCompletion(base)
-python << EOF
+python3 << EOF
 import sys
 import string
 import vim
 
-MAX_RESULTS=vim.eval('g:fuzzywordcompletion_maxresults')
+MAX_RESULTS=int(vim.eval('g:fuzzywordcompletion_maxresults'))
 transtable = vim.eval('g:fuzzywordcompletion_completiontable')
 if not transtable:
-    nosplitchars=string.letters+'_'
+    nosplitchars=string.ascii_letters+'_'
     deletechars =''.join(
         (chr(c) for c in range(0,256) if chr(c) not in nosplitchars))
-    transtable = string.maketrans(deletechars,' '*len(deletechars))
+    transtable = str.maketrans(deletechars,' '*len(deletechars))
 
 def levenshtein(a,b):
-    #from http://hetland.org/coding/python/levenshtein.py
     "Calculates the Levenshtein distance between a and b."
     n, m = len(a), len(b)
     if n > m:
@@ -84,7 +83,7 @@ def completion(word):
     else:
         distances=distances_2
     results.sort(
-        lambda a,b: \
+        key=lambda a,b: \
             (0 if len(a)==len(b) else {True:-1,False:1}[len(a) < len(b)]))
     keys=list(distances.keys())
     keys.sort()
