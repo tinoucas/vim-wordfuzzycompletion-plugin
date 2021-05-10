@@ -1,3 +1,5 @@
+Python3 version
+
 script type
 utility
 
@@ -6,7 +8,7 @@ Description
 A word fuzzy completion plugin for vim.
 
 Requirement: 
- +python vim support.
+ +python3 vim support.
 
 Installation:
  Just download the file `wordfuzzycompletion.vim` into ~/.vim/plugins and then restart vim.
