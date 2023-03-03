@@ -82,11 +82,8 @@ def completion(word):
         distances=distances_1
     else:
         distances=distances_2
-    results.sort(
-        key=lambda a,b: \
-            (0 if len(a)==len(b) else {True:-1,False:1}[len(a) < len(b)]))
-    keys=list(distances.keys())
-    keys.sort()
+    results = sorted(results, key=len)
+    keys=sorted(distances.keys())
     fuzzylen=int(MAX_RESULTS)-len(results)
     if fuzzylen >=0:
         for k in keys:
