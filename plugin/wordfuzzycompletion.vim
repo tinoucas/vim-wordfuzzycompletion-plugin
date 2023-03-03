@@ -2,7 +2,7 @@
 " author: jonatan alexis anauati (barakawins@gmail.com) "
 " version: 0.7. "
 
-if !has('python')
+if !has('python3')
     finish
 endif
 
